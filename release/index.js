@@ -1085,6 +1085,7 @@ var DataTableBodyRowComponent = /** @class */ (function () {
         var colsByPin = utils_1.columnsByPin(this._columns);
         this._columnsByPin = utils_1.columnsByPinArr(this._columns);
         this._columnGroupWidths = utils_1.columnGroupWidths(colsByPin, this._columns);
+        this.buildStylesByGroup();
     };
     __decorate([
         core_1.Input(),
