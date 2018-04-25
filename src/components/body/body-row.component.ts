@@ -218,6 +218,7 @@ export class DataTableBodyRowComponent implements DoCheck {
     const colsByPin = columnsByPin(this._columns);
     this._columnsByPin = columnsByPinArr(this._columns);
     this._columnGroupWidths = columnGroupWidths(colsByPin, this._columns);
-  }
 
+    this.buildStylesByGroup();
+  }
 }
