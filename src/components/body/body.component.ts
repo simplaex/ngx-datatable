@@ -98,6 +98,7 @@ import { MouseEvent } from '../../events';
         
         <datatable-summary-row
           *ngIf="summaryRow && summaryPosition === 'bottom'"
+          [ngStyle]="getBottomSummaryRowStyles()"
           [rowHeight]="summaryHeight"
           [offsetX]="offsetX"
           [innerWidth]="innerWidth"
@@ -435,7 +436,6 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     }
 
     this.temp = temp;
-    this.cd.detectChanges();
   }
 
   /**
@@ -535,6 +535,28 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
 
       translateXY(styles, 0, pos);
     }
+
+    return styles;
+  }
+
+  /**
+   * Calculate bottom summary row offset for scrollbar mode.
+   * For more information about cache and offset calculation
+   * see description for `getRowsStyles` method
+   *
+   * @returns {*} Returns the CSS3 style to be applied
+   *
+   * @memberOf DataTableBodyComponent
+   */
+  getBottomSummaryRowStyles(): any {
+    if (!this.scrollbarV || !this.rows || !this.rows.length) {
+      return null;
+    }
+
+    const styles = { position: 'absolute' };
+    const pos = this.rowHeightsCache.query(this.rows.length - 1);
+
+    translateXY(styles, 0, pos);
 
     return styles;
   }
